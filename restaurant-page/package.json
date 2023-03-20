@@ -4,6 +4,7 @@
   "description": "restaurant homepage",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "start": "webpack serve --open"
   },
   "keywords": [
