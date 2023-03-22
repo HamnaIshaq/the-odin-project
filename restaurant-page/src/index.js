@@ -1,25 +1,50 @@
-import "./style.css";
+import "./assets/styles/meyers-reset.css";
+import "./assets/styles/style.css";
+
+import Logo from "./assets/images/donut.png";
+
+import AddClass from "./util-ftn/AddClass";
+import RemoveClass from "./util-ftn/RemoveClass";
+
 import Home from "./pages/Home";
-import About from "./pages/About";
 import Menu from "./pages/Menu";
+import Contact from "./pages/Contact";
 
-const homeLink = document.querySelector(".tab-btn-home");
-const menuLink = document.querySelector(".tab-btn-menu");
-const aboutLink = document.querySelector(".tab-btn-about");
+const root = document.querySelector("#root");
 
-const mainContent = document.querySelector("#content");
+const logoImg = root.querySelector(".logo");
+logoImg.src = Logo;
+
+const homeLink = root.querySelector(".tab-btn-home");
+const menuLink = root.querySelector(".tab-btn-menu");
+const contactLink = root.querySelector(".tab-btn-contact");
+
+const mainContent = root.querySelector("#content");
 
 mainContent.appendChild(Home());
+AddClass(homeLink, "active");
 
 homeLink.addEventListener("click", () => {
   mainContent.innerHTML = "";
   mainContent.appendChild(Home());
+
+  AddClass(homeLink, "active");
+  RemoveClass(menuLink, "active");
+  RemoveClass(contactLink, "active");
 });
 menuLink.addEventListener("click", () => {
   mainContent.innerHTML = "";
   mainContent.appendChild(Menu());
+
+  AddClass(menuLink, "active");
+  RemoveClass(homeLink, "active");
+  RemoveClass(contactLink, "active");
 });
-aboutLink.addEventListener("click", () => {
+contactLink.addEventListener("click", () => {
   mainContent.innerHTML = "";
-  mainContent.appendChild(About());
+  mainContent.appendChild(Contact());
+
+  AddClass(contactLink, "active");
+  RemoveClass(homeLink, "active");
+  RemoveClass(menuLink, "active");
 });
