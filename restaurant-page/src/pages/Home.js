@@ -11,6 +11,7 @@ const Home = () => {
 
   const element = document.createElement("div");
   element.classList.add("hero-container");
+  element.classList.add("container");
 
   element.innerHTML = content;
 

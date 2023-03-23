@@ -70,6 +70,7 @@ const Menu = () => {
   `;
 
   const element = document.createElement("div");
+  element.classList.add("container");
 
   element.innerHTML = content;
 
