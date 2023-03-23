@@ -1,50 +1,67 @@
+// Styles
 import "./assets/styles/meyers-reset.css";
 import "./assets/styles/style.css";
 
-import Logo from "./assets/images/donut.png";
+// Components
+import Header from "./components/Header";
 
-import AddClass from "./util-ftn/AddClass";
-import RemoveClass from "./util-ftn/RemoveClass";
-
+// Pages
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Contact from "./pages/Contact";
 
 const root = document.querySelector("#root");
+root.classList.add("top-container");
 
-const logoImg = root.querySelector(".logo");
-logoImg.src = Logo;
+// HEADER NAVIGATION ITEMS
+const navItems = [
+  {
+    name: "Home",
+    active: true,
+  },
+  {
+    name: "Menu",
+    active: false,
+  },
+  {
+    name: "Contact",
+    active: false,
+  },
+];
 
-const homeLink = root.querySelector(".tab-btn-home");
-const menuLink = root.querySelector(".tab-btn-menu");
-const contactLink = root.querySelector(".tab-btn-contact");
+/*
+  FUNCTION TO CHANGE THE PAGE CONTENT
+  DEPENDING UPON THE HEADER NAVIGATION SET ACTIVE 
+  CHANGE THE CONTENT TO A NEW PAGE
+*/
+const ChangePageContent = () => {
+  content.innerHTML = "";
+  navItems.forEach((item) => {
+    if (item.active === true) {
+      const pageName = item.name;
+      switch (pageName) {
+        case "Home":
+          content.appendChild(Home());
+          break;
+        case "Menu":
+          content.appendChild(Menu());
+          break;
+        case "Contact":
+          content.appendChild(Contact());
+          break;
+      }
+    }
+  });
+  root.appendChild(content);
+};
 
-const mainContent = root.querySelector("#content");
+// ADD HEADER NAV TO ROOT WITH NAV ITEMS AND CALLBACK
+root.appendChild(Header(navItems, ChangePageContent));
 
-mainContent.appendChild(Home());
-AddClass(homeLink, "active");
+const content = document.createElement("div");
+content.id = "content";
 
-homeLink.addEventListener("click", () => {
-  mainContent.innerHTML = "";
-  mainContent.appendChild(Home());
+// SHOW HOME OF LOAD
+content.appendChild(Home());
 
-  AddClass(homeLink, "active");
-  RemoveClass(menuLink, "active");
-  RemoveClass(contactLink, "active");
-});
-menuLink.addEventListener("click", () => {
-  mainContent.innerHTML = "";
-  mainContent.appendChild(Menu());
-
-  AddClass(menuLink, "active");
-  RemoveClass(homeLink, "active");
-  RemoveClass(contactLink, "active");
-});
-contactLink.addEventListener("click", () => {
-  mainContent.innerHTML = "";
-  mainContent.appendChild(Contact());
-
-  AddClass(contactLink, "active");
-  RemoveClass(homeLink, "active");
-  RemoveClass(menuLink, "active");
-});
+root.appendChild(content);
