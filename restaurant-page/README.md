@@ -50,7 +50,7 @@ These pages can be changed using the buttons in the header navbar.
 
 The below diagram shows how the different JavaScript files are linked in this project:
 
-![Component diagram of the project](.readme-images/component-diagram/.png)
+![Component diagram of the project](.readme-images/component-diagram.png)
 
 ### What I learned
 
