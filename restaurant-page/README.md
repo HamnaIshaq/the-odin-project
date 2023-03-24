@@ -21,7 +21,7 @@ These pages can be changed using the buttons in the header navbar.
   - [Screenshot](#screenshot)
 - [My process](#my-process)
   - [Built with](#built-with)
-  - [Component diagram](#component-diagram)
+  - [App architecture](#app-architecture)
   - [What I learned](#what-i-learned)
   - [Improvements](#improvements)
 - [Resources used](#resources-used)
@@ -46,17 +46,17 @@ These pages can be changed using the buttons in the header navbar.
 - JavaScript
 - Webpack
 
-### Component diagram
+### App architecture
 
 The below diagram shows how the different JavaScript files are linked in this project:
 
-![Component diagram of the project](./readme-images/component-diagram.png)
+![Component diagram of the project](./readme-images/app-architecture.png)
 
 ### What I learned
 
 I wanted to make the header common and only change the page specific content. For this, I used callbacks. I knew about callbacks but through this project, I now have a much better understanding of callbacks.
 
-I used the callback function inside Header component to change page content, the code for is shown below:
+I used a callback function inside Header component to change page content, the code is shown below:
 
 ```
 // index.js
@@ -80,13 +80,35 @@ const ChangePageContent = () => {
   });
   root.appendChild(content);
 };
+
+```
+
+```
+// index.js
+const navItems = [
+  {
+    name: "Home",
+    active: true,
+  },
+  {
+    name: "Menu",
+    active: false,
+  },
+  {
+    name: "Contact",
+    active: false,
+  },
+];
+
+root.appendChild(Header(navItems, ChangePageContent));
 ```
 
 ```
 // Header.js
 const ChangePage = (e, navItemsArr, ChangePageContent) => {
   if (e.target.classList.contains("tab-btn")) {
-    ...
+    SetActiveTabInDOM(e, navItems);
+    NavItemsSetActive(e.target.getAttribute("data-name"), navItemsArr);
     ChangePageContent();
   }
 };
@@ -114,3 +136,5 @@ const ChangePage = (e, navItemsArr, ChangePageContent) => {
 - Map taken from <a href="https://www.openstreetmap.org/">Open Street Map</a>
 
 - Callback function <a href="https://www.youtube.com/shorts/-6qRM2H2hKw">Callback Functions Youtube shorts video by Uma Abu</a>
+
+- App architecture diagram drawn using <a href="https://app.diagrams.net/">Diagrams.net</a>
