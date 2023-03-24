@@ -24,6 +24,7 @@ These pages can be changed using the buttons in the header navbar.
   - [App architecture](#app-architecture)
   - [What I learned](#what-i-learned)
   - [Improvements](#improvements)
+- [Show your support](#show-your-support)
 - [Resources used](#resources-used)
 
 ## Overview
@@ -118,6 +119,10 @@ const ChangePage = (e, navItemsArr, ChangePageContent) => {
 ### Improvements
 
 - Make the website responsive
+
+## Show your support
+
+If you liked the project hit the ⭐️ button, I'd really appreciate it.
 
 ## Resources used
 
